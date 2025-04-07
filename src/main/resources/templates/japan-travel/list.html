@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>JapanTravel情報一覧</title>
+    <link href="/css/list.css" rel="stylesheet">
+    <meta charset="utf-8" />
+</head>
+<body>
+    <h1>JapanTravel情報一覧</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>地名</th>
+                <th>訪問済み</th>
+                <th>評価</th>
+                <th>更新日時</th>
+                <th>登録日時</th>
+                <th>削除日時</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="travel : ${japanTravelList}" th:object="${travel}">
+                <td class="center" th:text="*{id}"></td>
+                <td th:text="*{locationName}"></td>
+                <td class="center" th:text="*{visited ? '訪問済み' : '未訪問'}"></td>
+                <td th:text="*{review}"></td>
+                <td class="center" th:text="${#dates.format(travel.updateDate, 'yyyy/MM/dd')}"></td>
+                <td class="center" th:text="${#dates.format(travel.createDate, 'yyyy/MM/dd')}"></td>
+                <td class="center" th:text="${#dates.format(travel.deleteDate, 'yyyy/MM/dd')}"></td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>
