@@ -6,7 +6,12 @@
     <meta charset="utf-8" />
 </head>
 <body>
-    <h1>JapanTravel情報一覧</h1>
+	<h1>JapanTravel情報一覧</h1>
+	<div class="button-container">
+	    <div class="float-end button">
+	        <a th:href="@{/japan-travel/add}" class="btn btn-primary">新規登録はこちら</a>
+	    </div>
+	</div>
     <table>
         <thead>
             <tr>
@@ -28,6 +33,7 @@
                 <td class="center" th:text="${#dates.format(travel.updateDate, 'yyyy/MM/dd')}"></td>
                 <td class="center" th:text="${#dates.format(travel.createDate, 'yyyy/MM/dd')}"></td>
                 <td class="center" th:text="${#dates.format(travel.deleteDate, 'yyyy/MM/dd')}"></td>
+				<td><a th:href="@{/japan-travel/{id}(id=*{id})}" class="btn btn-secondary">詳細</a></td>
             </tr>
         </tbody>
     </table>

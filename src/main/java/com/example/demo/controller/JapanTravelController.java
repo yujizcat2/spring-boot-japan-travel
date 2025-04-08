@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -34,19 +35,19 @@ public class JapanTravelController {
         model.addAttribute("japanTravelList", japanTravelList);
         return "japan-travel/list";
     }
-
-    /**
-     * 特定の地名で旅行情報を検索
-     * @param location 地名
-     * @param model Model
-     * @return 検索結果を表示するHTML
-     */
-    @RequestMapping(value = "/japan-travel/search", method = RequestMethod.GET)
-    public String searchByLocation(String location, Model model) {
-        List<JapanTravel> japanTravelList = japanTravelService.searchByLocation(location);
-        model.addAttribute("japanTravelList", japanTravelList);
-        return "japan-travel/search";
+    
+    @RequestMapping(value = "japan-travel/add")
+    public String displayAdd(Model model) {
+      return "japan-travel/add";
     }
+    
+    @RequestMapping("/japan-travel/{id}")
+    public String displayView(@PathVariable Long id, Model model) {
+      JapanTravel jt = japanTravelService.findById(id);
+      model.addAttribute("jtData", jt);
+      return "japan-travel/view";
+    }
+
     
     
 }

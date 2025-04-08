@@ -1,11 +1,37 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
   xmlns:th="http://www.thymeleaf.org">
-<head th:replace="common/head :: head_fragment(title = '旅行地情報詳細', scripts = ~{::script}, links = ~{::link})"></head>
+<head
+  th:replace="common/head :: head_fragment(title = 'Travel情報詳細', scripts = ~{::script}, links = ~{::link})"></head>
 <body>
   <div class="container">
-    <h1>旅行地情報詳細画面</h1>
-    <a href="/japan-travel/list">一覧に戻る</a>
+    <h1>Travel情報詳細</h1>
+    <div th:object="${jtData}">
+      <div class="row mx-md-n5">
+        <div class="col-2 pt-3 border bg-light">地名</div>
+        <div class="col pt-3 border">
+          <p th:text="*{locationName}"></p>
+        </div>
+      </div>
+      <div class="row mx-md-n5">
+        <div class="col-2 pt-3 border bg-light">visited?</div>
+        <div class="col pt-3 border">
+          <p th:text="*{visited}"></p>
+        </div>
+      </div>
+      <div class="row mx-md-n5">
+        <div class="col-2 pt-3 border bg-light">Review</div>
+        <div class="col pt-3 border">
+          <p th:text="*{review}"></p>
+        </div>
+      </div>
+    </div>
+    <br />
+    <div class="text-center">
+      <a th:href="@{/japan-travel/{id}/edit(id=*{id})}" class="btn btn-primary disabled" aria-disabled="true">　編集　</a>
+      <a th:href="@{/japan-travel/{id}/delete(id=*{id})}" class="btn btn-secondary disabled" aria-disabled="true">　削除　</a>
+      <a href="/japan-travel/list" class="btn btn-secondary">一覧に戻る</a>
+    </div>
   </div>
 </body>
 </html>

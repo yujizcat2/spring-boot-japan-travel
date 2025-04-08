@@ -14,20 +14,15 @@ public class JapanTravelService {
   @Autowired
   private JapanTravelRepository japanTravelRepository;
 
-  /**
-   * すべての旅行地を取得
-   * @return 旅行地のリスト
-   */
   public List<JapanTravel> searchAll() {
     return japanTravelRepository.findAll();
   }
 
-  /**
-   * 旅行地IDで検索
-   * @param id 旅行地ID
-   * @return 旅行地情報
-   */
   public JapanTravel searchById(Long id) {
     return japanTravelRepository.findById(id).orElse(null);
   }
+  
+  public JapanTravel findById(Long id) {
+	return japanTravelRepository.findById(id).get();
+   }
 }
